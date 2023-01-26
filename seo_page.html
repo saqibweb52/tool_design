@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="sentence-count" content="0">
+  <meta name="word-count" content="0">
+  <meta name="character-count" content="0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <style>
+    body{
+        background-image: url("annie-spratt-0ZPSX_mQ3xI-unsplash.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #84f1f1;
+
+    }
+
+    #container {
+    
+        padding: 5px;
+        margin-top: 3%;
+
+    }
+
+    .shadow{
+        box-shadow: 5px 5px 17px #b4b4b4;
+
+    }
+
+    textarea {
+  resize: none;
+
+  height: 400px;
+  width: 350px;
+  
+
+}
+
+h2{
+    font-family:Times New Roman;
+    padding: 20px 125px;
+}
+
+
+li{
+  display:inline-block;
+  padding-top: 15px;
+  padding-right: 40px;
+  font-size: 1.275em;
+}
+
+.dot {
+    margin-right: 5px;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.head{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-radius: 7px;
+  padding: 10px 15px ;
+  
+}
+  </style>
+</head>
+<body>
+
+<h2><img src="icon-logo-png-11.jpg" alt="logo" width="50" height="42"> Text Count</h2>
+
+<div class="container" id="container">
+   
+    <div class="form-group">
+        <div class="shadow">
+            <div class="head">
+            <ul class="menu">
+                <li>Sentences <span id="sentences" ><b>0</b></span></li>
+                <li>Words <span id="words"><b>0</b></span></li>
+                <li>Characters <span id="characters"><b>0</b></span></li>
+                <li>Twitter <b><span id="twitter" >280</span></b>/280</li>
+                <li>Facebook <b><span id="facebook">250</span></b>/250</li>
+                <li>Google <b><span id="google">300</span></b>/300</li>
+            </ul>
+        </div>
+        <textarea class="form-control"  id="textarea" placeholder="Write Your Text Here..."></textarea>
+    </div>
+    </div>
+ 
+</div>
+
+<script>
+    var textarea = document.getElementById("textarea");
+    var sentences = document.getElementById("sentences");
+    var words = document.getElementById("words");
+    var characters = document.getElementById("characters");
+    var twitter = document.getElementById("twitter");
+    var fbcount = document.getElementById("facebook");
+    var googlecount = document.getElementById("google");
+    var sentenceCountMeta = document.querySelector('meta[name="sentence-count"]');
+    var wordCountMeta = document.querySelector('meta[name="word-count"]');
+    var characterCountMeta = document.querySelector('meta[name="character-count"]');
+
+    textarea.addEventListener("input", function() {
+        var text = textarea.value;
+       
+        //Count for Twitter
+        var twittercount= 280 - text.length;
+        twitter.innerHTML = twittercount;
+
+               
+        //Count for facebook
+        var fbcount= 250 - text.length;
+        facebook.innerHTML = fbcount;
+
+        //Count for google
+        var googlecount= 300 - text.length;
+        google.innerHTML = googlecount;
+
+        // Count sentences
+        var sentenceCount = text.split(/[.!?]+/).length - 1;
+        sentences.innerHTML = sentenceCount;
+        sentenceCountMeta.setAttribute('content', sentenceCount);
+
+        // Count words
+        var wordCount = text.split(/\s+/).length;
+        words.innerHTML = wordCount;
+        wordCountMeta.setAttribute('content', wordCount);
+
+        // Count characters
+        var characterCount = text.length;
+        characters.innerHTML = characterCount;
+        characterCountMeta.setAttribute('content', characterCount);
+    });
+</script>
+</body>
+
+</html>
